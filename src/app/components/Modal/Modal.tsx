@@ -5,7 +5,7 @@ import {
   Transition,
   TransitionChild,
 } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 import { IconClose } from '../Icons'
 
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
   showClose?: boolean
   closeModal: () => void
   children: React.ReactNode
+  iconClose?: ReactNode
 }
 
 const Modal: React.FC<Props> = ({
@@ -22,6 +23,7 @@ const Modal: React.FC<Props> = ({
   isOpen,
   closeModal,
   children,
+  iconClose,
 }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -65,7 +67,7 @@ const Modal: React.FC<Props> = ({
                       onClick={closeModal}
                       data-testid="iconClose"
                     >
-                      <IconClose />
+                      {iconClose || <IconClose />}
                     </div>
                   )}
                   <div className="w-full text-center" data-testId="modalTitle">
