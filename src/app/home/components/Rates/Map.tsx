@@ -56,7 +56,7 @@ const Apartments = [
 
 const Map = ({ center, zoom }: MapProps) => {
   const ref = useRef(null)
-  const [map, setMap] = useState<google.maps.Map<Element> | null>(null)
+  const [map, setMap] = useState<any | null>(null)
 
   useEffect(() => {
     // we need to save google-map object for adding markers and routes in future

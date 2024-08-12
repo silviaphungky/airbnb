@@ -30,7 +30,9 @@ const OverlayContainer = (props: Props) => {
     }
 
     onAdd = () => {
-      if (this.content) this.getPanes().floatPane.appendChild(this.content)
+      if (this.content) {
+        this.getPanes()?.floatPane.appendChild(this.content)
+      }
     }
 
     onRemove = () => {
@@ -43,7 +45,10 @@ const OverlayContainer = (props: Props) => {
       if (this.position) {
         const divPosition = this.getProjection().fromLatLngToDivPixel(
           this.position
-        )
+        ) as {
+          x: number
+          y: number
+        }
         this.content.style.left = divPosition.x + 'px'
         this.content.style.top = divPosition.y + 'px'
       }
