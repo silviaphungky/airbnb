@@ -183,6 +183,7 @@ const SearchModal = ({
               className="flex gap-2 py-2 items-center border-b-[1px] border-gray-200 text-sm"
               onClick={() => {
                 setSelectedArea(item)
+                setAreaList([])
                 setContent('all')
               }}
             >
