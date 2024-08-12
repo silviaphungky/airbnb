@@ -19,11 +19,16 @@ export const bedroomMap = {
   entire: 'Entire Place',
 }
 
-const Rates = () => {
+const Rates = ({
+  fetchArea,
+}: {
+  fetchArea: (userInput: string) => Promise<{}>
+}) => {
   const [open, setOpen] = useState(false)
   const [slideValue, setSlideValue] = useState(7)
   const [rate, setRate] = useState(748469)
   const [openNightConfig, setOpenNightConfig] = useState(false)
+  const [area, setArea] = useState('Jakarta')
   const [bedroomCount, setBedroomCount] = useState(1)
   const [bedroomType, setBedroomType] = useState<'entire' | 'private'>('entire')
 
@@ -82,7 +87,7 @@ const Rates = () => {
           >
             <IconSearch />
             <div>
-              <div className="text-sm font-medium">Jakarta</div>
+              <div className="text-sm font-medium">{area}</div>
               <div className="text-sm text-slate">
                 {bedroomMap[bedroomType]} · {bedroomCount} bedrooms
               </div>
@@ -103,12 +108,15 @@ const Rates = () => {
 
       {open && (
         <SearchModal
+          area={area}
           bedroomCount={bedroomCount}
           bedroomType={bedroomType}
           open={open}
+          setArea={setArea}
           setOpen={setOpen}
           setBedroomType={setBedroomType}
           setBedroomCount={setBedroomCount}
+          fetchArea={fetchArea}
         />
       )}
       {openNightConfig && (
